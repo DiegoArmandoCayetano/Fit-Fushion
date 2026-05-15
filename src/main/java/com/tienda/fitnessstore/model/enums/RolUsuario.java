@@ -1,5 +1,6 @@
 package com.tienda.fitnessstore.model.enums;
 
-public class RolUsuario {
-    
+public enum RolUsuario {
+    ADMIN,
+    CLIENTE
 }

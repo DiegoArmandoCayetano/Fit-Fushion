@@ -1,20 +1,31 @@
 package com.tienda.fitnessstore.model.entity;
 
+import com.tienda.fitnessstore.model.enums.RolUsuario;
 import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-@Getter @Setter
-@NoArgsConstructor @AllArgsConstructor
+@Table(name = "usuarios")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String nombre;
-    private String rol;
-    private String correo;
-    private String contrasena;
+
+    @Column(nullable = false, unique = true)
+    private String email;
+
+    @Column(nullable = false)
+    private String password;
+
+    @Enumerated(EnumType.STRING)
+    private RolUsuario rol;
 }
