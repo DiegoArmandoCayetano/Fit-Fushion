@@ -2,24 +2,45 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Registro</title>
+
+    <link rel="stylesheet" th:href="@{/css/login.css}">
 </head>
 <body>
 
-<h1>Registro</h1>
+<div class="login-container">
 
-<form>
+    <h1>Registro</h1>
 
-    <input type="text" placeholder="Nombre">
+    <form th:action="@{/auth/register-form}" method="post">
 
-    <input type="email" placeholder="Correo">
+        <input
+                type="text"
+                name="nombre"
+                placeholder="Nombre"
+                required
+        >
 
-    <input type="password" placeholder="Contraseña">
+        <input
+                type="email"
+                name="email"
+                placeholder="Correo"
+                required
+        >
 
-    <button type="submit">
-        Registrarse
-    </button>
+        <input
+                type="password"
+                name="password"
+                placeholder="Contraseña"
+                required
+        >
 
-</form>
+        <button type="submit">
+            Registrarse
+        </button>
+
+    </form>
+
+</div>
 
 </body>
 </html>

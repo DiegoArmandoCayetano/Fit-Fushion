@@ -20,17 +20,21 @@ public class UsuarioServiceImpl implements UsuarioService {
     private final PasswordEncoder passwordEncoder;
 
     @Override
-    public Usuario registrarUsuario(RegistroUsuarioDTO dto) {
+public Usuario registrarUsuario(RegistroUsuarioDTO dto) {
 
-        Usuario usuario = Usuario.builder()
-                .nombre(dto.getNombre())
-                .email(dto.getEmail())
-                .password(passwordEncoder.encode(dto.getPassword()))
-                .rol(RolUsuario.CLIENTE)
-                .build();
-
-        return usuarioRepository.save(usuario);
+    if (usuarioRepository.findByEmail(dto.getEmail()).isPresent()) {
+        throw new IllegalArgumentException("El email ya está registrado");
     }
+
+    Usuario usuario = Usuario.builder()
+            .nombre(dto.getNombre())
+            .email(dto.getEmail())
+            .password(passwordEncoder.encode(dto.getPassword()))
+            .rol(RolUsuario.CLIENTE)
+            .build();
+
+    return usuarioRepository.save(usuario);
+}
 
     @Override
     public Usuario login(LoginDTO dto) {

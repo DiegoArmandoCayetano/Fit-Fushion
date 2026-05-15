@@ -19,23 +19,10 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
-                .csrf(csrf -> csrf.disable())
-
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(
-        "/",
-        "/login",
-        "/register",
-        "/css/**",
-        "/js/**",
-        "/images/**",
-        "/auth/register",
-        "/auth/login"
-).permitAll()
-                        .anyRequest().authenticated()
-                )
-
-                .formLogin(form -> form.disable());
+            .csrf(csrf -> csrf.disable())
+            .authorizeHttpRequests(auth -> auth
+                .anyRequest().permitAll()   // 👈 CAMBIO CLAVE
+            );
 
         return http.build();
     }

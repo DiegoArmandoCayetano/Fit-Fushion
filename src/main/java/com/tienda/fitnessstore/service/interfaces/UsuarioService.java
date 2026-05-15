@@ -9,5 +9,5 @@ public interface UsuarioService {
     Usuario registrarUsuario(RegistroUsuarioDTO dto);
 
     Usuario login(LoginDTO dto);
-
+    
 }
